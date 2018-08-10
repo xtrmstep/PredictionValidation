@@ -99,3 +99,11 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# data files
+/data
+
+# IDE files
+/.idea
+/.idea/*
+.idea/vcs.xml
