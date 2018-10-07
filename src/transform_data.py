@@ -8,7 +8,7 @@ Algorithm:
     Read and process CSV in chunks using pandas.read_csv(). Each iteration performs sequence of transformations
     above the data and stores results to a destination folder. The operations look as follows:
         1) read a chunk
-        2) extract datetime parameters and add to the original dataFrame
+        2) NOT READY extract datetime parameters and add to the original dataFrame
         3) group by locations
         4) create a new file or append to existing file for locations  
 """
