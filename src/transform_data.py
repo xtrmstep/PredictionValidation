@@ -46,9 +46,9 @@ def process_all_files(source_files_path, destination_folder):
                                                          destination_folder,
                                                          '{}_location_{}.csv'.format(customer_name, name))
                 if os.path.exists(destination_abs_file_path):
-                    group.to_csv(destination_abs_file_path, sep=';', mode = 'a', header = False)
+                    group.to_csv(destination_abs_file_path, sep=';', index=False, mode = 'a', header = False)
                 else:
-                    group.to_csv(destination_abs_file_path, sep=';')
+                    group.to_csv(destination_abs_file_path, sep=';', index=False)
 
 
 def main():
