@@ -37,11 +37,14 @@ def process_all_files(source_files_path, destination_folder):
         print("Reading", raw_file)
 
         reader = pd.read_csv(raw_file, sep=';', error_bad_lines=False, chunksize=10000)
+        chunk_count = 0
         for chunk in reader:
             grouped = chunk.groupby(['LocationID'])
+            chunk_count = chunk_count + 1
+            print("Processing next chunk...", chunk_count)
             for name, group in grouped:
                 # I use assumption that customer name is in the name of files
-                customer_name = 'PE' if raw_file.index('PE') > -1 else 'TRG'
+                customer_name = 'PE' if 'PE' in raw_file else 'TRG'
                 destination_abs_file_path = os.path.join(script_dir,
                                                          destination_folder,
                                                          '{}_location_{}.csv'.format(customer_name, name))
