@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="991732f3-f46e-47db-90a8-db2362fc69f3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/transform_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data-transform.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data-transform.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tests_files_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_files_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transform_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/transform_data.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,23 +22,23 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ipynb" value="1" />
-          <entry key="py" value="5" />
+          <entry key="py" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IPNB" value="1" />
-          <entry key="Python" value="5" />
+          <entry key="Python" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1448" />
+          <entry key="py" value="2002" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1448" />
+          <entry key="Python" value="2002" />
         </counts>
       </usages-collector>
     </session>
@@ -51,12 +48,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/transform_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+            <state relative-caret-position="383">
+              <caret line="46" column="70" selection-start-line="46" selection-start-column="70" selection-end-line="46" selection-end-column="70" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <marker date="1538919183615" expanded="true" signature="938:939" ph="..." />
-                <marker date="1538919183615" expanded="true" signature="1368:1505" ph="..." />
+                <marker date="1538925825465" expanded="true" signature="938:939" ph="..." />
+                <marker date="1538925825465" expanded="true" signature="2213:2355" ph="..." />
               </folding>
             </state>
           </provider>
@@ -238,8 +235,8 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39943343" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -276,14 +273,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Anaconda3/Lib/site-packages/pandas/io/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="389" column="28" lean-forward="true" selection-start-line="389" selection-start-column="28" selection-end-line="389" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/transform_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+        <state relative-caret-position="383">
+          <caret line="46" column="70" selection-start-line="46" selection-start-column="70" selection-end-line="46" selection-end-column="70" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <marker date="1538919183615" expanded="true" signature="938:939" ph="..." />
-            <marker date="1538919183615" expanded="true" signature="1368:1505" ph="..." />
+            <marker date="1538925825465" expanded="true" signature="938:939" ph="..." />
+            <marker date="1538925825465" expanded="true" signature="2213:2355" ph="..." />
           </folding>
         </state>
       </provider>
