@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="991732f3-f46e-47db-90a8-db2362fc69f3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests_files_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prepare-data-v1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/prepare-data-v1.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transform_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data-transform.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/data-transform.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests_files_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_files_utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,23 +25,23 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ipynb" value="1" />
-          <entry key="py" value="3" />
+          <entry key="py" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IPNB" value="1" />
-          <entry key="Python" value="3" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="286" />
+          <entry key="py" value="1448" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="286" />
+          <entry key="Python" value="1448" />
         </counts>
       </usages-collector>
     </session>
@@ -48,12 +49,14 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/files_utils.py">
+        <entry file="file://$PROJECT_DIR$/transform_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="260">
+              <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#19#0" expanded="true" />
+                <marker date="1538919183615" expanded="true" signature="938:939" ph="..." />
+                <marker date="1538919183615" expanded="true" signature="1368:1505" ph="..." />
               </folding>
             </state>
           </provider>
@@ -62,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/tests_files_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state>
+              <caret column="27" selection-start-column="27" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -80,6 +83,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>os.walk(folder)</find>
+      <find>files</find>
+      <find>source_files</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -89,8 +94,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.ipynb_checkpoints/files_utils.py" />
-        <option value="$PROJECT_DIR$/tests/tests_files_utils.py" />
         <option value="$PROJECT_DIR$/files_utils.py" />
+        <option value="$PROJECT_DIR$/tests/tests_files_utils.py" />
+        <option value="$PROJECT_DIR$/transform_data.py" />
       </list>
     </option>
   </component>
@@ -152,7 +158,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.transform_data">
     <configuration name="tests_files_utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="src" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,8 +180,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="transform_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="src" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/transform_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.tests_files_utils" />
+      <item itemvalue="Python.transform_data" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.transform_data" />
         <item itemvalue="Python.tests_files_utils" />
       </list>
     </recent_temporary>
@@ -205,7 +237,7 @@
       <window_info anchor="bottom" id="Terminal" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -234,19 +266,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/files_utils.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/tests_files_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/files_utils.py">
+    <entry file="file://$PROJECT_DIR$/transform_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="260">
+          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
+            <marker date="1538919183615" expanded="true" signature="938:939" ph="..." />
+            <marker date="1538919183615" expanded="true" signature="1368:1505" ph="..." />
           </folding>
         </state>
       </provider>
