@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import glob
 import shutil
+import datetime_helper as dth
 
 """
 Algorithm:
@@ -33,9 +34,10 @@ class DataTransformationProcessor:
     def _default_pipeline(self, customer_name, customer_data):
         """ task can return several transformations, each of transformed data should have a distinct file name """
 
-        chunks = self._default_pipeline_task_designate_chunks(customer_name, customer_data)
+        data_blocks = self._default_pipeline_task_designate_chunks(customer_name, customer_data)
         # other tasks go here...
-        return chunks
+        data_blocks = self._add_datetime_parts(data_blocks)
+        return data_blocks
 
     def _default_pipeline_task_designate_chunks(self, customer_name, customer_data):
         """ designate data to chunks and files to store them on disk """
@@ -48,6 +50,14 @@ class DataTransformationProcessor:
             file = os.path.join(script_dir, self._destination_folder, '{}_location_{}.csv'.format(customer_name, name))
             result += [(file, group)]
         return result
+
+    @staticmethod
+    def _add_datetime_parts(data_blocks):
+        for file, data in data_blocks:
+            data[['dt_year', 'dt_month', 'dt_day', 'dt_day_of_year', 'dt_day_of_week', 'dt_hour']] =\
+                data.apply(lambda df: dth.to_date_parts(df['SalesDate']), axis=1)
+
+        return data_blocks
 
     def _process_all_files(self, source_files_path, destination_folder):
         """ read and process files in chunk and store to the destination folder """
