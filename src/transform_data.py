@@ -5,31 +5,49 @@ import shutil
 
 """
 Algorithm:
-    Read and process CSV in chunks using pandas.read_csv(). Each iteration performs sequence of transformations
-    above the data and stores results to a destination folder. The operations look as follows:
-        1) read a chunk
-        2) NOT READY extract datetime parameters and add to the original dataFrame
-        3) group by locations
-        4) create a new file or append to existing file for locations  
+    This is simplified custom pipeline to process big data files using Pandas. It reads and processes CSV in chunks
+    using pandas.read_csv(). After that it applies a pipeline to each of the chunks. Pipeline denotes a sequence of tasks
+    to perform upon data. 
+    In a simplified form the workflow looks as follows:
+        1) read chunks
+        2) apply pipelines to each chunk separately
+        3) after each pipeline store result to disk (create or update files)
+    Pipeline workflow looks as follows:
+        1) the first task should designate all data block to smaller groups, which will be stored to disk
+            if not required then it should return only one group
+            it returns a tuple: file name and data
+        2) other tasks perform operations upon groups, but they don't break the original designation
+        3) it returns transformed data as an array of tuples (file, data)  
 """
 
 
 class DataTransformationProcessor:
 
     def __init__(self, source_files, destination_folder):
-        self._transformation_tasks = [
-            self._default_task
+        self._transformation_pipelines = [
+            self._default_pipeline
         ]
         self._source_files = source_files
         self._destination_folder = destination_folder
 
-    def _default_task(self, customer_name, data_chunk_name, customer_data):
+    def _default_pipeline(self, customer_name, customer_data):
         """ task can return several transformations, each of transformed data should have a distinct file name """
+
+        chunks = self._default_pipeline_task_designate_chunks(customer_name, customer_data)
+        # other tasks go here...
+        return chunks
+
+    def _default_pipeline_task_designate_chunks(self, customer_name, customer_data):
+        """ designate data to chunks and files to store them on disk """
         # get script's folder to build an absolute path to a destination folder
         # absolute path is required for pandas.dataFrame to save data
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        file = os.path.join(script_dir, self._destination_folder, '{}_location_{}.csv'.format(customer_name, data_chunk_name))
-        return [(file, customer_data)]
+        grouped = customer_data.groupby(['LocationID'])
+        result = []
+        for name, group in grouped:
+            file = os.path.join(script_dir, self._destination_folder, '{}_location_{}.csv'.format(customer_name, name))
+            result += [(file, group)]
+        return result
 
     def _process_all_files(self, source_files_path, destination_folder):
         """ read and process files in chunk and store to the destination folder """
@@ -40,20 +58,17 @@ class DataTransformationProcessor:
         for raw_file in raw_files:
             print("Reading", raw_file)
             reader = pd.read_csv(raw_file, sep=';', error_bad_lines=False, chunksize=10000)
+            # I use assumption that customer name is in the name of files
+            customer_name = 'PE' if 'PE' in raw_file else 'TRG'
             chunk_count = 0
             for chunk in reader:
-                # TODO move grouping to transformation method
-                grouped = chunk.groupby(['LocationID'])
                 chunk_count = chunk_count + 1
                 print("Processing next chunk...", chunk_count)
-                for name, group in grouped:
-                    # I use assumption that customer name is in the name of files
-                    customer_name = 'PE' if 'PE' in raw_file else 'TRG'
-                    for task in self._transformation_tasks:
-                        # each transformation tasks can return several data transformations
-                        transformed_data_array = task(self, customer_name, name, group)
-                        for file, data in transformed_data_array:
-                            self._save_transformation(file, data)
+                for pipeline in self._transformation_pipelines:
+                    # each transformation tasks can return several data transformations
+                    transformed_data_array = pipeline(customer_name, chunk)
+                    for file, data in transformed_data_array:
+                        self._save_transformation(file, data)
 
     @staticmethod
     def _clear_folder(folder):
