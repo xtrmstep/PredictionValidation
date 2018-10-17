@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import os
 import glob
 import shutil
@@ -26,18 +27,33 @@ class DataTransformationProcessor:
 
     def __init__(self, source_files, destination_folder):
         self._transformation_pipelines = [
-            self._default_pipeline
+            self._pipeline_extract_locations,
+            self._pipeline_extract_cities
         ]
         self._source_files = source_files
         self._destination_folder = destination_folder
 
-    def _default_pipeline(self, customer_name, customer_data):
+    def _pipeline_extract_locations(self, customer_name, customer_data):
         """ task can return several transformations, each of transformed data should have a distinct file name """
 
         data_blocks = self._default_pipeline_task_designate_chunks(customer_name, customer_data)
         # other tasks go here...
         data_blocks = self._add_datetime_parts(data_blocks)
         return data_blocks
+
+    def _pipeline_extract_cities(self, customer_name, customer_data):
+        data_blocks = self._task_designate_cities(customer_name, customer_data)
+        # other tasks go here...
+        return data_blocks
+
+    def _task_designate_cities(self, customer_name, customer_data):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        file = os.path.join(script_dir, self._destination_folder, '{}_cities.csv'.format(customer_name))
+
+        cities = customer_data['City1'].unique()
+        cities = np.asarray(list(filter(bool, cities)))
+        cities = pd.DataFrame({'City': cities})
+        return [(file, cities)]
 
     def _default_pipeline_task_designate_chunks(self, customer_name, customer_data):
         """ designate data to chunks and files to store them on disk """
