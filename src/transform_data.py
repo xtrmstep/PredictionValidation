@@ -38,6 +38,7 @@ class DataTransformationProcessor:
 
         data_blocks = self._default_pipeline_task_designate_chunks(customer_name, customer_data)
         # other tasks go here...
+        data_blocks = self._remove_zero_quantity(data_blocks)
         data_blocks = self._add_datetime_parts(data_blocks)
         return data_blocks
 
@@ -74,6 +75,15 @@ class DataTransformationProcessor:
                 data.apply(lambda df: dth.to_date_parts(df['SalesDate']), axis=1)
 
         return data_blocks
+
+    @staticmethod
+    def _remove_zero_quantity(data_blocks):
+        result = []
+        for file, data in data_blocks:
+            data = data[data['Quantity'] > 0]
+            result += [(file, data)]
+
+        return result
 
     def _process_all_files(self, source_files_path, destination_folder):
         """ read and process files in chunk and store to the destination folder """
