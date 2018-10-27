@@ -36,10 +36,11 @@ class DataTransformationProcessor:
     def _pipeline_extract_groups(self, customer_name, customer_data):
         """ task can return several transformations, each of transformed data should have a distinct file name """
 
-        data_blocks = self._task_designate_by_location_plu(customer_name, customer_data)
+        data_blocks = self._task_all_operations(customer_name, customer_data)
+        #data_blocks = self._task_designate_by_location_plu(customer_name, customer_data)
         # other tasks go here...
-        data_blocks = self._remove_zero_quantity(data_blocks)
-        data_blocks = self._add_datetime_parts(data_blocks)
+        #data_blocks = self._remove_zero_quantity(data_blocks)
+        #data_blocks = self._add_datetime_parts(data_blocks)
         return data_blocks
 
     def _pipeline_extract_cities(self, customer_name, customer_data):
@@ -55,6 +56,26 @@ class DataTransformationProcessor:
         cities = np.asarray(list(filter(bool, cities)))
         cities = pd.DataFrame({'City': cities})
         return [(file, cities)]
+
+    def _task_all_operations(self, customer_name, customer_data):
+        """ designate data to chunks and files to store them on disk """
+        # get script's folder to build an absolute path to a destination folder
+        # absolute path is required for pandas.dataFrame to save data
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # remove zero qty
+        customer_data = customer_data[customer_data['Quantity'] != 0]
+
+        # add date parts
+        customer_data[['dt_year', 'dt_month', 'dt_day', 'dt_day_of_year', 'dt_day_of_week', 'dt_hour']] = \
+            customer_data.apply(lambda df: dth.to_date_parts(df['SalesDate']), axis=1)
+
+        grouped = customer_data.groupby(['LocationID','PLU'])
+        result = []
+        for name, group in grouped:
+            file = os.path.join(script_dir, self._destination_folder, '{}_(location,plu)_{}.csv'.format(customer_name, name))
+            result += [(file, group)]
+        return result
 
     def _task_designate_by_location_plu(self, customer_name, customer_data):
         """ designate data to chunks and files to store them on disk """
@@ -94,7 +115,7 @@ class DataTransformationProcessor:
 
         for raw_file in raw_files:
             print("Reading", raw_file)
-            reader = pd.read_csv(raw_file, sep=';', error_bad_lines=False, chunksize=10000)
+            reader = pd.read_csv(raw_file, sep=';', error_bad_lines=False, chunksize=100000)
             # I use assumption that customer name is in the name of files
             customer_name = 'PE' if 'PE' in raw_file else 'TRG'
             chunk_count = 0
